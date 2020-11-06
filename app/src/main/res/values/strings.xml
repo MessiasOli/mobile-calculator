@@ -10,6 +10,7 @@
     <string name="sete">7</string>
     <string name="oito">8</string>
     <string name="nove">9</string>
-
+    <string name="virgula">,</string>
+    <string name="backspace">←</string>
     <string name="limpar">Limpar</string>
 </resources>

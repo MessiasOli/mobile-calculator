@@ -8,13 +8,15 @@
 
     <TextView
         android:id="@+id/visorTv"
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textSize="25sp"
-        android:text="" />
+        android:text=""
+        android:textSize="35dp" />
 
     <LinearLayout
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -111,14 +113,30 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/zeroBt"
-            android:layout_width="135dp"
+            android:id="@+id/backspace"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:onClick="onClick"
+            android:layout_weight="1"
+            android:text="@string/backspace" />
+
+        <Button
+            android:id="@+id/zeroBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:layout_weight="1"
             android:text="@string/zero" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/virgula"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:layout_weight="1"
+            android:text="@string/virgula" />
 
+    </LinearLayout>
 
     <Button
         android:id="@+id/limparBt"
