@@ -13,4 +13,6 @@
     <string name="virgula">,</string>
     <string name="backspace">←</string>
     <string name="limpar">Limpar</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="sair">Sair</string>
 </resources>

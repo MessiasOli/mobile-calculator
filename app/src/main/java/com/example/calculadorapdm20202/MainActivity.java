@@ -3,9 +3,11 @@ package com.example.calculadorapdm20202;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         visorTv = findViewById(R.id.visorTv);
 
-//        if (savedInstanceState != null)
-//            visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+        if (savedInstanceState != null)
+            visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+
+        getSupportActionBar().setSubtitle("Tela Principal");
     }
 
     @Override
@@ -76,6 +80,29 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         Log.v(getString(R.string.app_name), "onRestoreInstanceState executado - Recuperando dados de instância");
         visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.configuracoesMi:
+                Intent configuracoesIntent = new Intent(this, ConfiguracoesActivity.class);
+                startActivity(configuracoesIntent);
+                return true;
+
+            case R.id.sairMi:
+                finish();
+                return true;
+
+            default:
+                return false;
+        }
     }
 
     public void onClick(View view){
