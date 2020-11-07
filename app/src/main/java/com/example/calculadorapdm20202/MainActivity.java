@@ -1,5 +1,6 @@
 package com.example.calculadorapdm20202;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,14 +11,71 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Constante para salvamento/restauração de variáveis de instância
+    private final String VALOR_VISOR_TV = "valor_visor_tv";
+
     private TextView visorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(getString(R.string.app_name), "onCreate executado - iniciado ciclo completo");
         setContentView(R.layout.activity_main);
 
         visorTv = findViewById(R.id.visorTv);
+
+//        if (savedInstanceState != null)
+//            visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.v(getString(R.string.app_name), "onStart executado - iniciado ciclo visível");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.v(getString(R.string.app_name), "onResume executado - iniciado ciclo em primeiro plano");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.v(getString(R.string.app_name), "onPause executado - finalizado ciclo em primeiro plano");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.v(getString(R.string.app_name), "onStop executado - finalizado ciclo visível");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.v(getString(R.string.app_name), "onRestart executado - Inicia o ciclo visível");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.v(getString(R.string.app_name), "onDestroy executado - finalizado ciclo completo");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.v(getString(R.string.app_name), "onSaveInstanceState executado - salvando dados de instância");
+        outState.putString(VALOR_VISOR_TV, visorTv.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.v(getString(R.string.app_name), "onRestoreInstanceState executado - Recuperando dados de instância");
+        visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
     }
 
     public void onClick(View view){
@@ -69,11 +127,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.backspace:
                 if (visorTv.getText().length() > 0) {
                     visorTv.setText(visorTv.getText().subSequence(0, visorTv.getText().length() - 1));
-                    Log.v(getString(R.string.app_name), getString(R.string.nove));
+                    Log.v(getString(R.string.app_name), getString(R.string.backspace));
                 }
                 break;
             case R.id.limparBt:
                 visorTv.setText("");
+                Log.v(getString(R.string.app_name),"Tela limpa.");
         }
     }
 }
