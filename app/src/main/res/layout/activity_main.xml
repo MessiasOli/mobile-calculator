@@ -38,6 +38,38 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/raizQuadradaBt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:visibility="gone"
+                    android:text="@string/raiz_quadrada"
+                    android:textStyle="bold"
+                    app:backgroundTint="#000000" />
+
+                <Button
+                    android:id="@+id/ExponeciacaoBT"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:text="@string/Exponeciacao"
+                    app:backgroundTint="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="horizontal">
+
+                <Button
                     android:id="@+id/maisBt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -207,6 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
+                    android:textStyle="bold"
                     android:onClick="onClick"
                     android:text="@string/backspace" />
 

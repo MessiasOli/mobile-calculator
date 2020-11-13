@@ -20,4 +20,11 @@
     <string name="vezes">*</string>
     <string name="dividir">/</string>
     <string name="igual">=</string>
+    <string name="tipo_calculadora">Tipo Calculadora</string>
+    <string name="avancada">Avançada</string>
+    <string name="basica">Básica</string>
+    <string name="salvar">Salvar</string>
+    <string name="raiz_quadrada">√</string>
+    <string name="Exponeciacao">Y^X</string>
+    <string name="Sinal_exponeciacao">^</string>
 </resources>

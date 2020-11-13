@@ -1,6 +1,7 @@
 package com.example.calculadorapdm20202;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,13 +13,21 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private double number1 = 0;
-    private double number2 = 0;
 
     //Constante para salvamento/restauração de variáveis de instância
     private final String VALOR_VISOR_TV = "valor_visor_tv";
     private TextView visorTv;
     private Math math = new Math();
+
+    //Constantes para solicitação de permissões
+    private final int CONFIGURACOES_REQUEST_CODE = 1;
+
+    // Constante para o envio de parâmetros para a ConfiguracoesActivity
+    public static final String EXTRA_CONFIGURACOES = "EXTRA_CONFIGURACOES";
+
+    //referência para os objetos Button definidos no layout
+    private Configuracoes configuracoes = new Configuracoes(false);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.configuracoesMi:
                 Intent configuracoesIntent = new Intent(this, ConfiguracoesActivity.class);
-                startActivity(configuracoesIntent);
+                configuracoesIntent.putExtra(EXTRA_CONFIGURACOES, configuracoes);
+                startActivityForResult(configuracoesIntent, CONFIGURACOES_REQUEST_CODE);
                 return true;
 
             case R.id.sairMi:
@@ -112,70 +122,91 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.zeroBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.zero) : visorTv.getText() + getString(R.string.zero)
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.zero) : visorTv.getText() + getString(R.string.zero)
                 );
                 Log.v(getString(R.string.app_name), getString(R.string.zero));
                 break;
 
             case R.id.umBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.um) : visorTv.getText() + getString(R.string.um)
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.um) : visorTv.getText() + getString(R.string.um)
                 );
                 Log.v(getString(R.string.app_name), getString(R.string.um));
                 break;
 
             case R.id.doisBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.dois) : visorTv.getText() + getString(R.string.dois));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.dois) : visorTv.getText() + getString(R.string.dois));
                 Log.v(getString(R.string.app_name), getString(R.string.dois));
                 break;
 
             case R.id.tresBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.tres) : visorTv.getText() + getString(R.string.tres));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.tres) : visorTv.getText() + getString(R.string.tres));
                 Log.v(getString(R.string.app_name), getString(R.string.tres));
                 break;
 
             case R.id.quatroBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.quatro) : visorTv.getText() + getString(R.string.quatro));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.quatro) : visorTv.getText() + getString(R.string.quatro));
                 Log.v(getString(R.string.app_name), getString(R.string.quatro));
                 break;
 
             case R.id.cincoBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.cinco) : visorTv.getText() + getString(R.string.cinco));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.cinco) : visorTv.getText() + getString(R.string.cinco));
                 Log.v(getString(R.string.app_name), getString(R.string.cinco));
                 break;
 
             case R.id.seisBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.seis) : visorTv.getText() + getString(R.string.seis));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.seis) : visorTv.getText() + getString(R.string.seis));
                 Log.v(getString(R.string.app_name), getString(R.string.seis));
                 break;
 
             case R.id.seteBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.sete) : visorTv.getText() + getString(R.string.sete));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.sete) : visorTv.getText() + getString(R.string.sete));
                 Log.v(getString(R.string.app_name), getString(R.string.sete));
                 break;
 
             case R.id.oitoBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.oito) : visorTv.getText() + getString(R.string.oito));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.oito) : visorTv.getText() + getString(R.string.oito));
                 Log.v(getString(R.string.app_name), getString(R.string.oito));
                 break;
 
             case R.id.noveBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") ? getString(R.string.nove) : visorTv.getText() + getString(R.string.nove));
+                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.nove) : visorTv.getText() + getString(R.string.nove));
                 Log.v(getString(R.string.app_name), getString(R.string.nove));
                 break;
 
             case R.id.virgulaBt:
                 visorTv.setText(
-                        visorTv.getText().toString().contains(",") ? visorTv.getText() : visorTv.getText() + getString(R.string.virgula));
+                        visorTv.getText().toString().contains(".") || visorTv.getText().equals("Error!") ? visorTv.getText() : visorTv.getText() + getString(R.string.virgula));
                 Log.v(getString(R.string.app_name), getString(R.string.virgula));
+                break;
+
+            case R.id.raizQuadradaBt:
+                if (Double.parseDouble(visorTv.getText().toString()) == 0 || math.hasCalc(visorTv.getText().toString())) {
+                    visorTv.setText(visorTv.getText());
+                }
+                else {
+                    str = math.calc(visorTv.getText().toString() + "raiz");
+                    visorTv.setText(str);
+                }
+                Log.v(getString(R.string.app_name), getString(R.string.raiz_quadrada));
+                break;
+
+            case R.id.ExponeciacaoBT:
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.Sinal_exponeciacao)))
+                    visorTv.setText(visorTv.getText());
+                else {
+                    str = math.calc(visorTv.getText().toString());
+                    visorTv.setText( str.equals("Erro!") ? str : str + getString(R.string.Sinal_exponeciacao));
+                }
+                Log.v(getString(R.string.app_name), getString(R.string.Sinal_exponeciacao));
                 break;
 
             case R.id.maisBt:
@@ -238,6 +269,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.limparBt:
                 visorTv.setText("0");
                 Log.v(getString(R.string.app_name),"Tela limpa.");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CONFIGURACOES_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            configuracoes = data.getParcelableExtra(EXTRA_CONFIGURACOES);
+            if (configuracoes != null && configuracoes.getAvancada()) {
+                findViewById(R.id.raizQuadradaBt).setVisibility(View.VISIBLE);
+                findViewById(R.id.ExponeciacaoBT).setVisibility(View.VISIBLE);
+            }
+            else {
+                findViewById(R.id.raizQuadradaBt).setVisibility(View.GONE);
+                findViewById(R.id.ExponeciacaoBT).setVisibility(View.GONE);
+            }
         }
     }
 }
