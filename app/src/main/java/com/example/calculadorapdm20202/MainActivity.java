@@ -178,19 +178,22 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.noveBt:
                 visorTv.setText(
-                        visorTv.getText().equals("0") || visorTv.getText().equals("Error!") ? getString(R.string.nove) : visorTv.getText() + getString(R.string.nove));
+                        (visorTv.getText().equals("0") && !math.hasCalc(visorTv.getText().toString())) || visorTv.getText().equals("Error!") ? getString(R.string.nove) : visorTv.getText() + getString(R.string.nove));
                 Log.v(getString(R.string.app_name), getString(R.string.nove));
                 break;
 
-            case R.id.virgulaBt:
+            case R.id.pontoBt:
                 visorTv.setText(
-                        visorTv.getText().toString().contains(".") || visorTv.getText().equals("Error!") ? visorTv.getText() : visorTv.getText() + getString(R.string.virgula));
-                Log.v(getString(R.string.app_name), getString(R.string.virgula));
+                        (visorTv.getText().toString().contains(".") || visorTv.getText().equals("Error!")) && !math.hasCalc(visorTv.getText().toString()) ? visorTv.getText() : visorTv.getText() + getString(R.string.ponto));
+                Log.v(getString(R.string.app_name), getString(R.string.ponto));
                 break;
 
             case R.id.raizQuadradaBt:
-                if (Double.parseDouble(visorTv.getText().toString()) == 0 || math.hasCalc(visorTv.getText().toString())) {
-                    visorTv.setText(visorTv.getText());
+                if (visorTv.getText().length() == 0) {
+                    break;
+                }
+                if (math.hasCalc(visorTv.getText().toString()) || Double.parseDouble(visorTv.getText().toString()) == 0) {
+                    break;
                 }
                 else {
                     str = math.calc(visorTv.getText().toString() + "raiz");
@@ -200,7 +203,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.ExponeciacaoBT:
-                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.Sinal_exponeciacao)))
+                if (visorTv.getText().length() == 0) {
+                    break;
+                }
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.Sinal_exponeciacao)) || math.hasCalc(visorTv.getText().toString()))
                     visorTv.setText(visorTv.getText());
                 else {
                     str = math.calc(visorTv.getText().toString());
@@ -210,7 +216,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.maisBt:
-                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.mais)))
+                Log.v(getString(R.string.app_name), visorTv.getText().length() + "");
+                if (visorTv.getText().length() == 0) {
+                    visorTv.setText("+");
+                    break;
+                }
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.mais)) || math.hasCalc(visorTv.getText().toString()))
                     visorTv.setText(visorTv.getText());
                 else {
                     str = math.calc(visorTv.getText().toString());
@@ -220,7 +231,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.menosBt:
-                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.menos)))
+                if (visorTv.getText().length() == 0) {
+                    visorTv.setText("-");
+                    break;
+                }
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.menos)) || math.hasCalc(visorTv.getText().toString()))
                     visorTv.setText(visorTv.getText());
                 else {
                     str = math.calc(visorTv.getText().toString());
@@ -230,7 +245,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.vezesBt:
-                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.vezes)))
+                if (visorTv.getText().length() == 0) {
+                    break;
+                }
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.vezes)) || math.hasCalc(visorTv.getText().toString()))
                     visorTv.setText(visorTv.getText());
                 else{
                     str = math.calc(visorTv.getText().toString());
@@ -240,7 +258,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.dividirBt:
-                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.dividir)))
+                if (visorTv.getText().length() == 0) {
+                    break;
+                }
+                if (visorTv.getText().subSequence(visorTv.getText().length() - 1, visorTv.getText().length()).toString().equals(getString(R.string.dividir)) || math.hasCalc(visorTv.getText().toString()))
                     visorTv.setText(visorTv.getText());
                 else {
                     str = math.calc(visorTv.getText().toString());
@@ -250,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.igualBt:
-                if (!visorTv.getText().equals(getString(R.string.zero))) {
+                if (!visorTv.getText().equals(getString(R.string.zero)) && visorTv.getText().length() > 0 ) {
                     visorTv.setText(math.calc(visorTv.getText().toString()));
                 } else
                     visorTv.setText(R.string.zero);

@@ -254,13 +254,13 @@
                     android:text="@string/zero" />
 
                 <Button
-                    android:id="@+id/virgulaBt"
+                    android:id="@+id/pontoBt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_weight="1"
                     android:onClick="onClick"
-                    android:text="@string/virgula" />
+                    android:text="@string/ponto" />
 
             </LinearLayout>
 
